@@ -80,9 +80,16 @@ public final class CircleObject extends AbstractDynamicGameObject {
   public void render() {
     parent.fill(color);
     parent.stroke(color);
-    parent.ellipse((float) position.firstAsInt(parent.width),
+    /*parent.ellipse((float) position.firstAsInt(parent.width),
                    (float) position.secondAsInt(parent.height),
                    (float) radius,
                    (float) radius);
+
+    System.out.println("secAsInt: " + position.secondAsInt(parent.width));*/
+
+    parent.ellipse((float) position.getFirst(),
+            (float) position.getSecond(),
+            (float) radius,
+            (float) radius);
   }
 }

@@ -18,11 +18,13 @@ public final class Vector2D {
   }
 
   public int firstAsInt(int max) {
-    return (int) Math.round(normalize().getFirst() * max);
+    double normalizedFirst = this.normalize().getFirst();
+    return (int) Math.round(normalizedFirst * max);
   }
 
   public int secondAsInt(int max) {
-    return (int) Math.round(normalize().getSecond() * max);
+    double normalizedSecond = this.normalize().getSecond();
+    return (int) Math.round(normalizedSecond * max);
   }
 
   /**
@@ -67,8 +69,8 @@ public final class Vector2D {
    * @return the new Vector2D
    */
   public Vector2D subtract(Vector2D v) {
-    first += v.getFirst();
-    second += v.getSecond();
+    first -= v.getFirst();
+    second -= v.getSecond();
     return this;
   }
 
@@ -100,7 +102,7 @@ public final class Vector2D {
   /**
    * Normalizes {@code this} to a unit vector with magnitude 1.0
    *
-   * @return the unit vector correspoding to {@code this}
+   * @return the unit vector corresponding to {@code this}
    */
   public Vector2D normalize() {
     setMagnitude(1.0);

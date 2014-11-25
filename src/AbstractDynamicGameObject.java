@@ -58,13 +58,18 @@ public abstract class AbstractDynamicGameObject implements GameObject {
   @Override
   public void update(double timeStep) {
     acceleration = accumulator.accumulate().scale(1 / mass);
+    System.out.println("\nAccel: " + acceleration.getSecond());
 
     Vector2D temp = position;
 
+    System.out.println("oldX: " + temp.getFirst());
+    System.out.println("oldY: " + temp.getSecond());
     // Verlet positional integration
-    position = position.add(position.subtract(oldPosition))
+    position.add(position.subtract(oldPosition))
                 .add(acceleration.scale(timeStep * timeStep));
 
+    System.out.println("newX: " + position.getFirst());
+    System.out.println("newY: " + position.getSecond());
     oldPosition = temp;
   }
 }

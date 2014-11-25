@@ -17,31 +17,28 @@ public class GameHandler extends PApplet {
   }
 
   ArrayList<AbstractDynamicGameObject> objects;
-  int[][] tileGrid;
+  //int[][] tileGrid;
 
   public void setup() {
     //initialize game screen and tile grid
-    size(800,500);
-    tileGrid = new int[50][80];
+    size(displayWidth, displayHeight);
+    //tileGrid = new int[50][80];
     objects = new ArrayList<>();
-
+    objects.add(new CircleObject.Builder(this)
+            .position(new Vector2D(200, 75.0))
+            .radius(100)
+            .mass(1)
+            .acceleration(new Vector2D(0, 10))
+            .color(0x2200FF00)
+            .strokeColor(0)
+            .build());
   }
 
   public void draw() {
     background(100);
 
-    if (frameCount % 20 == 0) {
-      objects.add(new CircleObject.Builder(this)
-              .position(new Vector2D(200, 75.0))
-              .radius(10 * frameCount / 80)
-              .mass(1)
-              .color(0x2200FF00)
-              .strokeColor(0)
-              .build());
-    }
-
     for (AbstractDynamicGameObject m : objects) {
-      m.applyForce(new Vector2D(0, 15));
+      m.applyForce(new Vector2D(0, 1500));
       m.update(1 / frameRate);
       if (m.getPosition().getFirst() > width) {
         objects.remove(m);
@@ -50,8 +47,6 @@ public class GameHandler extends PApplet {
       m.render();
       m.accumulator.clearForces();
     }
-
-    println(objects.size());
 
     // Detect Collisions
     // Resolve Collisions
