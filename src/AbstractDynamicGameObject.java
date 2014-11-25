@@ -29,6 +29,25 @@ public abstract class AbstractDynamicGameObject implements GameObject {
    */
   protected ForceAccumulator accumulator;
 
+  public Vector2D getPosition() {
+    return position;
+  }
+
+  public double getMass() {
+    return mass;
+  }
+
+  /**
+   * Applies the given set of forces to the object.
+   *
+   * @param forces varargs list of forces to apply
+   */
+  public void applyForce(Vector2D... forces) {
+    for (Vector2D force : forces) {
+      accumulator.addForce(force);
+    }
+  }
+
   /**
    * Updates the position of {@code this} based on how much time has passed
    * during the frame cycle.
@@ -39,8 +58,12 @@ public abstract class AbstractDynamicGameObject implements GameObject {
   public void update(double timeStep) {
     acceleration = accumulator.accumulate().scale(1 / mass);
 
+    Vector2D temp = position;
+
     // Verlet positional integration
     position = position.add(position.subtract(oldPosition))
                 .add(acceleration.scale(timeStep * timeStep));
+
+    oldPosition = temp;
   }
 }
