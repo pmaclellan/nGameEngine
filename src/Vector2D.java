@@ -17,6 +17,14 @@ public final class Vector2D {
     second = 0;
   }
 
+  public int firstAsInt(int max) {
+    return (int) Math.round(normalize().getFirst() * max);
+  }
+
+  public int secondAsInt(int max) {
+    return (int) Math.round(normalize().getSecond() * max);
+  }
+
   /**
    * Constructs a vector with the given parameters.
    *

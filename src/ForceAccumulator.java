@@ -39,10 +39,13 @@ public class ForceAccumulator {
     if (forces.size() == 0) {
       return new Vector2D();
     }
+
     Vector2D totalForce = new Vector2D();
+
     for (Vector2D vector : forces) {
       totalForce.add(vector);
     }
+
     return totalForce;
   }
 }

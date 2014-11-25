@@ -23,6 +23,7 @@ public abstract class AbstractDynamicGameObject implements GameObject {
    * The object's mass.
    */
   protected double mass;
+
   /**
    * A construct to accumulate forces currently acting upon an object as a part
    * of determining the next position of the object.

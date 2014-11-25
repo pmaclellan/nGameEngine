@@ -2,6 +2,12 @@ import processing.core.*;
 
 public final class CircleObject extends AbstractDynamicGameObject {
   private double radius;
+
+  /**
+   * Object's color represented as simple 32-bit {@code int}.
+   */
+  protected int color = 0xFF0000FF;
+
   private PApplet parent;
 
   public static class Builder {
@@ -11,6 +17,8 @@ public final class CircleObject extends AbstractDynamicGameObject {
     private Vector2D acceleration;
     private double mass;
     private double radius;
+    private int color;
+    private int strokeColor;
     private PApplet parent;
 
     public Builder(PApplet parent) {
@@ -18,6 +26,7 @@ public final class CircleObject extends AbstractDynamicGameObject {
       acceleration = new Vector2D();
       mass = 1;
       radius = 10;
+      strokeColor = 0;
       this.parent = parent;
     }
 
@@ -41,6 +50,16 @@ public final class CircleObject extends AbstractDynamicGameObject {
       return this;
     }
 
+    public Builder color(int color) {
+      this.color = color;
+      return this;
+    }
+
+    public Builder strokeColor(int strokeColor) {
+      this.strokeColor = strokeColor;
+      return this;
+    }
+
     public CircleObject build() {
       return new CircleObject(this);
     }
@@ -53,13 +72,17 @@ public final class CircleObject extends AbstractDynamicGameObject {
     accumulator = new ForceAccumulator();
     mass = builder.mass;
     radius = builder.radius;
+    color = builder.color;
     parent = builder.parent;
   }
 
   @Override
   public void render() {
-    parent.fill(200);
-    parent.ellipse((float) position.getFirst(), (float) position.getSecond(),
-            (float) radius, (float) radius);
+    parent.fill(color);
+    parent.stroke(color);
+    parent.ellipse((float) position.firstAsInt(parent.width),
+                   (float) position.secondAsInt(parent.height),
+                   (float) radius,
+                   (float) radius);
   }
 }
