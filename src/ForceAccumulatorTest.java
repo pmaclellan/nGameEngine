@@ -36,6 +36,6 @@ public class ForceAccumulatorTest {
     fa.addForce(force3);
 
     assertEquals(force1.add(force3.add(force2.add(force4))).getMagnitude(),
-                 fa.accumulate().getMagnitude(), 0.000001);
+            fa.accumulate().getMagnitude(), 0.000001);
   }
 }

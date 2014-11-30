@@ -17,19 +17,6 @@ public final class Vector2D {
     second = 0;
   }
 
-<<<<<<< HEAD
-=======
-  public int firstAsInt(int max) {
-    double normalizedFirst = this.normalize().getFirst();
-    return (int) Math.round(normalizedFirst * max);
-  }
-
-  public int secondAsInt(int max) {
-    double normalizedSecond = this.normalize().getSecond();
-    return (int) Math.round(normalizedSecond * max);
-  }
-
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   /**
    * Constructs a vector with the given parameters.
    *
@@ -41,15 +28,14 @@ public final class Vector2D {
     this.second = second;
   }
 
-<<<<<<< HEAD
   /**
-   * Copy constructor
+   * Constructs a clone of the given Vector2D.
    *
-   * @param clone the Vector2D object to copy from
+   * @param parent the vector to be cloned
    */
-  public Vector2D(Vector2D clone) {
-    this.first = clone.getFirst();
-    this.second = clone.getSecond();
+  public Vector2D(Vector2D parent) {
+    this.first = parent.getFirst();
+    this.second = parent.getSecond();
   }
 
   public int firstAsInt(int max) {
@@ -62,8 +48,6 @@ public final class Vector2D {
     return (int) Math.round(normalizedSecond * max);
   }
 
-=======
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   public double getFirst() {
     return first;
   }
@@ -73,11 +57,7 @@ public final class Vector2D {
   }
 
   public double getMagnitude() {
-<<<<<<< HEAD
-    return Math.sqrt((first*first) + (second*second));
-=======
     return Math.sqrt(first*first + second*second);
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   }
 
   /**
@@ -87,13 +67,7 @@ public final class Vector2D {
    * @return the new Vector2D
    */
   public Vector2D add(Vector2D v) {
-<<<<<<< HEAD
     return new Vector2D(first + v.getFirst(), second + v.getSecond());
-=======
-    first += v.getFirst();
-    second += v.getSecond();
-    return this;
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   }
 
   /**
@@ -103,13 +77,7 @@ public final class Vector2D {
    * @return the new Vector2D
    */
   public Vector2D subtract(Vector2D v) {
-<<<<<<< HEAD
     return new Vector2D(first - v.getFirst(), second - v.getSecond());
-=======
-    first -= v.getFirst();
-    second -= v.getSecond();
-    return this;
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   }
 
   /**
@@ -119,13 +87,7 @@ public final class Vector2D {
    * @return the scaled Vector2D
    */
   public Vector2D scale(double factor) {
-<<<<<<< HEAD
-    return new Vector2D(first*factor, second*factor);
-=======
-    first *= factor;
-    second *= factor;
-    return this;
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
+    return new Vector2D(first * factor, second * factor);
   }
 
   /**
@@ -136,16 +98,11 @@ public final class Vector2D {
    */
   public Vector2D setMagnitude(double newMag) {
     if (getMagnitude() != 0) {
-<<<<<<< HEAD
-      return this.scale(newMag / getMagnitude());
-    } else {
+      return new Vector2D(this.scale(newMag / getMagnitude()));
+    }
+    else {
       return new Vector2D();
     }
-=======
-      scale(newMag / getMagnitude());
-    }
-    return this;
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   }
 
   /**
@@ -154,11 +111,6 @@ public final class Vector2D {
    * @return the unit vector corresponding to {@code this}
    */
   public Vector2D normalize() {
-<<<<<<< HEAD
-    return setMagnitude(1.0);
-=======
-    setMagnitude(1.0);
-    return this;
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
+    return new Vector2D(this.setMagnitude(1.0));
   }
 }

@@ -29,41 +29,23 @@ public class ForceAccumulator {
     forces.clear();
   }
 
-<<<<<<< HEAD
   public int size() {
     return forces.size();
   }
 
-=======
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
   /**
    * Sums all of the forces that are currently present in the accumulator.
    *
    * @return the total combined force
    */
   public Vector2D accumulate() {
-    // return a zero-vector if no forces are present
-<<<<<<< HEAD
-    //if (forces.size() == 0) {
-    //  return new Vector2D();
-    //}
 
     Vector2D totalForce = new Vector2D();
 
     for (Vector2D force : forces) {
       totalForce = totalForce.add(force);
-=======
-    if (forces.size() == 0) {
-      return new Vector2D();
     }
 
-    Vector2D totalForce = new Vector2D();
-
-    for (Vector2D vector : forces) {
-      totalForce.add(vector);
->>>>>>> 5ecc14cf12bc236a08577e488876bc4c101aa93a
-    }
-
-    return totalForce;
+      return totalForce;
   }
 }
